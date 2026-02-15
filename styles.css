@@ -271,6 +271,38 @@ p {
   overflow: hidden;
 }
 
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.nvim-pane {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.nvim-tabline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.52rem 0.7rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+}
+
+.filetype {
+  color: var(--nvim-func);
+  text-transform: lowercase;
+}
+
 .editor-topbar {
   display: flex;
   flex-wrap: wrap;
@@ -290,53 +322,252 @@ p {
   margin: 0;
   padding: 1.15rem;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   line-height: 1.65;
   color: var(--text-primary);
   overflow-x: auto;
   white-space: pre;
 }
 
-.comment {
+.hljs {
+  color: var(--text-primary);
+  background: transparent;
+}
+
+.hljs-comment,
+.hljs-quote {
   color: var(--nvim-comment);
 }
 
-.kw {
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal {
   color: var(--nvim-keyword);
 }
 
-.key {
-  color: var(--nvim-func);
-}
-
-.str {
+.hljs-string,
+.hljs-meta .hljs-string {
   color: var(--nvim-string);
 }
 
-.fn,
-.type {
-  color: var(--nvim-func);
-}
-
-.type {
-  color: var(--nvim-type);
-}
-
-.num {
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet {
   color: var(--nvim-constant);
 }
 
-.prop {
+.hljs-title,
+.hljs-title.function_,
+.hljs-title.class_ {
+  color: var(--nvim-func);
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: var(--nvim-type);
+}
+
+.hljs-attr,
+.hljs-property,
+.hljs-attribute {
   color: var(--nvim-property);
 }
 
-.op {
+.hljs-operator,
+.hljs-punctuation,
+.hljs-variable.language_ {
+  color: var(--text-secondary);
+}
+
+.hljs-tag {
+  color: var(--nvim-func);
+}
+
+.tok-comment {
+  color: var(--nvim-comment);
+}
+
+.tok-keyword {
+  color: var(--nvim-keyword);
+}
+
+.tok-type {
+  color: var(--nvim-type);
+}
+
+.tok-func {
+  color: var(--nvim-func);
+}
+
+.tok-prop {
+  color: var(--nvim-property);
+}
+
+.tok-string {
+  color: var(--nvim-string);
+}
+
+.tok-punc {
+  color: var(--nvim-func);
+}
+
+.tok-soft {
+  color: var(--text-secondary);
+}
+
+.tok-heading1 {
+  color: var(--nvim-func);
+  font-weight: 700;
+}
+
+.tok-heading2 {
+  color: var(--nvim-operator);
+  font-weight: 700;
+}
+
+.tok-bullet {
+  color: var(--nvim-keyword);
+}
+
+.tok-strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.hljs-meta,
+.hljs-meta .hljs-keyword {
   color: var(--nvim-operator);
 }
 
-.md-h {
+.language-javascript .hljs-keyword,
+.language-typescript .hljs-keyword {
+  color: var(--nvim-func);
+}
+
+.language-javascript .hljs-title.function_,
+.language-typescript .hljs-title.function_ {
+  color: var(--nvim-func);
+}
+
+.language-javascript .hljs-built_in,
+.language-typescript .hljs-built_in {
+  color: var(--nvim-property);
+}
+
+.language-typescript .hljs-type,
+.language-typescript .hljs-built_in {
+  color: var(--nvim-type);
+}
+
+.language-c .hljs-keyword,
+.language-cpp .hljs-keyword,
+.language-go .hljs-keyword,
+.language-java .hljs-keyword,
+.language-rust .hljs-keyword {
+  color: var(--nvim-keyword);
+}
+
+.language-c .hljs-type,
+.language-cpp .hljs-type,
+.language-java .hljs-type {
+  color: var(--nvim-type);
+}
+
+.language-c .hljs-title.function_,
+.language-cpp .hljs-title.function_,
+.language-go .hljs-title.function_ {
+  color: var(--nvim-func);
+}
+
+.language-c .hljs-meta {
+  color: var(--nvim-keyword);
+}
+
+.language-cpp .hljs-meta {
   color: var(--nvim-operator);
-  font-weight: 600;
+}
+
+.language-c .hljs-string,
+.language-cpp .hljs-string,
+.language-go .hljs-string,
+.language-java .hljs-string,
+.language-rust .hljs-string {
+  color: var(--nvim-string);
+}
+
+.language-c .hljs-number,
+.language-cpp .hljs-number,
+.language-css .hljs-number,
+.language-java .hljs-number,
+.language-rust .hljs-number {
+  color: var(--nvim-constant);
+}
+
+.language-java .hljs-title.class_ {
+  color: var(--nvim-type);
+}
+
+.language-java .hljs-title.function_ {
+  color: var(--nvim-func);
+}
+
+.language-java .hljs-built_in {
+  color: var(--nvim-func);
+}
+
+.language-java .hljs-property {
+  color: var(--nvim-property);
+}
+
+.language-rust .hljs-title.function_ {
+  color: var(--nvim-type);
+}
+
+.language-rust .hljs-built_in {
+  color: var(--nvim-func);
+}
+
+.language-json .hljs-attr {
+  color: var(--nvim-property);
+}
+
+.language-json .hljs-punctuation {
+  color: var(--nvim-func);
+}
+
+.language-css .hljs-selector-tag,
+.language-css .hljs-selector-class,
+.language-css .hljs-selector-id {
+  color: var(--nvim-keyword);
+}
+
+.language-css .hljs-attribute {
+  color: var(--nvim-type);
+}
+
+.language-css .hljs-string {
+  color: var(--nvim-constant);
+}
+
+.language-css .hljs-attr {
+  color: var(--nvim-type);
+}
+
+.language-markdown .hljs-section {
+  color: var(--nvim-func);
+}
+
+.language-markdown .hljs-strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.language-markdown .hljs-bullet {
+  color: var(--nvim-keyword);
+}
+
+.language-markdown .hljs-quote {
+  color: var(--text-secondary);
 }
 
 .support-grid {
@@ -413,6 +644,34 @@ p {
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.showcase-card {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.showcase-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.showcase-card figcaption {
+  padding: 0.7rem 0.8rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+}
+
+
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 1.35rem 0;
@@ -437,6 +696,14 @@ p {
 @media (max-width: 960px) {
   .support-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase-grid {
+    grid-template-columns: 1fr;
   }
 }
 
